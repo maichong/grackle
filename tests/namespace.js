@@ -58,5 +58,23 @@ test('test namespaces', function (t) {
   t.equal(tr('CANCEL', 'payment'), 'CANCEL');
   t.equal(tr('CANCEL', 'error'), 'CANCEL');
   t.equal(tr('CANCEL'), 'CANCEL');
+
+  t.equal(tr.locale('en')('OK', 'login'), 'Login');
+  t.equal(tr.locale('en')('OK', 'payment'), 'Pay');
+  t.equal(tr.locale('en')('OK'), 'OK');
+  t.equal(tr.locale('en')('OK', 'error'), 'OK');
+  t.equal(tr.locale('en')('CANCEL', 'login'), 'Cancel');
+  t.equal(tr.locale('en')('CANCEL', 'payment'), 'Cancel');
+  t.equal(tr.locale('en')('CANCEL', 'error'), 'Cancel');
+  t.equal(tr.locale('en')('CANCEL'), 'Cancel');
+  t.equal(tr.locale('en')('DIALOG_CANCEL'), 'Close');
+  t.equal(tr.locale('en')(['DIALOG_CANCEL', 'CANCEL']), 'Close');
+  t.equal(tr.locale('en')(['DIALOG_CANCEL', 'CANCEL'], 'login'), 'Close');
+  t.equal(tr.locale('en')('PAY_OK'), 'Pay now');
+  t.equal(tr.locale('en')(['PAY_OK', 'OK']), 'Pay now');
+  t.equal(tr.locale('en')(['PAY_OK', 'OK'], 'login'), 'Pay now');
+  t.equal(tr.locale('en')(['DIALOG_OK', 'OK'], 'login'), 'Login');
+  t.equal(tr.locale('en')(['DIALOG_OK', 'LOGIN_OK'], 'login'), 'LOGIN_OK');
+
   t.end();
 });

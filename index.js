@@ -30,12 +30,13 @@ function create() {
 
   /**
    * translate message
+   * @param {string} locale
    * @param {string|string[]} message
    * @param {string} [namespace]
    * @param {Object} [values]
    * @param {Object} [formats]
    */
-  function t(message, namespace, values, formats) {
+  function _t(locale, message, namespace, values, formats) {
     if (namespace && typeof namespace === 'object') {
       // 没有设置 namespace 但设置了 values
       formats = values;
@@ -43,7 +44,6 @@ function create() {
       namespace = '';
     }
     var locales = namespaces[namespace] || namespaces._all;
-    var locale = t.getLocale();
     if (!locale) {
       if (Array.isArray(message)) {
         return message[message.length - 1];
@@ -71,6 +71,18 @@ function create() {
       formaters[template] = formater;
     }
     return formater.format(values);
+  }
+
+  /**
+   * translate message
+   * @param {string|string[]} message
+   * @param {string} [namespace]
+   * @param {Object} [values]
+   * @param {Object} [formats]
+   */
+  function t(message, namespace, values, formats) {
+    var locale = t.getLocale();
+    return _t(locale, message, namespace, values, formats);
   }
 
   function setNamespace(langs, namespace, isDefault) {
@@ -128,6 +140,15 @@ function create() {
       return locale;
     }
     return '';
+  };
+
+  /**
+   * @param {string} locale
+   */
+  t.locale = function (locale) {
+    return function (message, namespace, values, formats) {
+      return _t(locale, message, namespace, values, formats);
+    }
   };
 
   t.create = create;

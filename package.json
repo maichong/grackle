@@ -1,6 +1,6 @@
 {
   "name": "grackle",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Translate framework with ICU support",
   "keywords": [
     "translator",

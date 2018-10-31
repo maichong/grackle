@@ -7,7 +7,7 @@ interface LangGroup {
   [locale: string]: Lang
 }
 
-declare interface Grackle {
+declare interface Translate {
   /**
    * translate message
    * @param {string|string[]} message
@@ -17,6 +17,9 @@ declare interface Grackle {
    */
   (message: string | string[], namespace?: string, values?: Object, formats?: any): string;
   (message: string | string[], values?: Object, formats?: any): string;
+}
+
+declare interface Grackle extends Translate {
 
   /**
    * learn (set) languages
@@ -36,6 +39,12 @@ declare interface Grackle {
    * @returns {string}
    */
   getLocale(): string;
+
+  /**
+   * translate message with locale
+   * @param {string} locale 
+   */
+  locale(locale: string): Translate;
 
   /**
    * Create a new grackle instance
