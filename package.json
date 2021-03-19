@@ -1,6 +1,6 @@
 {
   "name": "grackle",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Translate framework with ICU support",
   "keywords": [
     "translator",
@@ -31,9 +31,9 @@
   },
   "homepage": "https://github.com/maichong/grackle#readme",
   "dependencies": {
-    "intl-messageformat": "^2.2.0"
+    "intl-messageformat": "^9.5.3"
   },
   "devDependencies": {
-    "tape": "^4.9.1"
+    "tape": "^5.2.2"
   }
 }

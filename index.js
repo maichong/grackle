@@ -1,17 +1,16 @@
-var IntlMessageFormat = require('intl-messageformat');
+var IntlMessageFormat = require("intl-messageformat").default;
 
 function create() {
   var namespaces = {
     _defaults: {},
-    _all: {}
+    _all: {},
   };
 
   var formaters = {};
 
   /**
-   * 
-   * @param {Object} object 
-   * @param {string} prop 
+   * @param {Object} object
+   * @param {string} prop
    */
   function get(object, prop) {
     if (object && object.hasOwnProperty(prop)) {
@@ -37,11 +36,11 @@ function create() {
    * @param {Object} [formats]
    */
   function _t(locale, message, namespace, values, formats) {
-    if (namespace && typeof namespace === 'object') {
+    if (namespace && typeof namespace === "object") {
       // 没有设置 namespace 但设置了 values
       formats = values;
       values = namespace;
-      namespace = '';
+      namespace = "";
     }
     var locales = namespaces[namespace] || namespaces._all;
     if (!locale) {
@@ -102,7 +101,10 @@ function create() {
       for (var key in lang) {
         if (isDefault) {
           defaultMessages[key] = lang[key];
-        } else if (defaultMessages.hasOwnProperty(key) && messages.hasOwnProperty(key)) {
+        } else if (
+          defaultMessages.hasOwnProperty(key) &&
+          messages.hasOwnProperty(key)
+        ) {
           continue;
         }
         messages[key] = lang[key];
@@ -116,7 +118,7 @@ function create() {
    * @param {string} [namespace] namespace name
    */
   t.learn = function (langs, namespace) {
-    setNamespace(langs, '_all', !namespace);
+    setNamespace(langs, "_all", !namespace);
     if (namespace) {
       setNamespace(langs, namespace, false);
     }
@@ -139,7 +141,7 @@ function create() {
     for (var locale in namespaces._all) {
       return locale;
     }
-    return '';
+    return "";
   };
 
   /**
@@ -148,7 +150,7 @@ function create() {
   t.locale = function (locale) {
     return function (message, namespace, values, formats) {
       return _t(locale, message, namespace, values, formats);
-    }
+    };
   };
 
   t.create = create;
